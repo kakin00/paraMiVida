@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Amor</title>
+    <style>
+        /* Estilo general */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe6f2;
+            font-family: Arial, sans-serif;
+            color: #333;
+            position: relative;
+        }
+
+        /* Botón centrado */
+        .container {
+            text-align: center;
+        }
+
+        button {
+            background-color: #ff4d79;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+        }
+
+        button:hover {
+            background-color: #ff1a57;
+        }
+
+        /* Caja de texto oculta */
+        .hidden-text {
+            display: none;
+            font-size: 24px;
+            position: absolute;
+        }
+
+        /* Emoji de corazón rojo */
+        .heart {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botón inicial -->
+        <button id="loveButton">Haga click acá</button>
+        
+        <!-- Caja de texto que se muestra después del cuarto click -->
+        <div id="loveMessage" class="hidden-text">
+            La amo muchisisisimo <span class="heart">&#10084;&#65039;</span>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+
+        // Función para mover el botón aleatoriamente por la pantalla
+        function moveButton() {
+            const button = document.getElementById("loveButton");
+            const bodyWidth = document.body.clientWidth;
+            const bodyHeight = document.body.clientHeight;
+
+            const maxX = bodyWidth - button.offsetWidth;
+            const maxY = bodyHeight - button.offsetHeight;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        }
+
+        // Mostrar el mensaje y centrarlo después del cuarto click
+        function showMessage() {
+            const message = document.getElementById("loveMessage");
+            message.style.display = "block";
+            message.style.left = "50%";
+            message.style.top = "50%";
+            message.style.transform = "translate(-50%, -50%)";
+        }
+
+        // Manejar los clics en el botón
+        document.getElementById("loveButton").addEventListener("click", function() {
+            clickCount++;
+
+            if (clickCount < 4) {
+                moveButton();
+            } else {
+                showMessage();
+            }
+        });
+    </script>
+</body>
+</html>
